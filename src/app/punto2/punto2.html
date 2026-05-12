@@ -1,1 +1,57 @@
-<p>punto2 works!</p>
+<div class="container pb-5">
+  <div class="d-flex justify-content-between align-items-center mb-5">
+    <h2 class="text-vintage m-0">Suministros Académicos</h2>
+    
+    <button type="button" class="btn btn-vintage shadow-sm" data-bs-toggle="modal" data-bs-target="#carritoModal">
+      Ver Carrito ({{ Arraycarrito.length }})
+    </button>
+  </div>
+
+  <div class="row row-cols-1 row-cols-md-4 g-4">
+    <div class="col" *ngFor="let p of productos">
+      <div class="card h-100 shadow-sm" style="background-color: #fdfaf6; border: 1px solid #d4c4b5;">
+        <img [src]="p.imagen" class="card-img-top p-2" style="height: 150px; object-fit: cover; filter: sepia(0.5);">
+        <div class="card-body d-flex flex-column text-center">
+          <h6 class="card-title text-vintage">{{ p.nombre }}</h6>
+          <p class="card-text fw-bold">$ {{ p.precio }}</p>
+          <button (click)="agregarAlCarrito(p)" class="btn btn-vintage btn-sm mt-auto">
+            Agregar al carrito
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="carritoModal" tabindex="-1" aria-labelledby="carritoModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content" style="background-color: #f4ece1; border: 2px solid #4a3f35;">
+        <div class="modal-header border-dark">
+          <h5 class="modal-title text-vintage" id="carritoModalLabel">Resumen de Pedido</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <ul class="list-group list-group-flush">
+            <li *ngFor="let item of Arraycarrito" class="list-group-item bg-transparent d-flex justify-content-between border-dark small">
+              <span>{{ item.nombre }}</span>
+              <span>${{ item.precio }}</span>
+            </li>
+            <li *ngIf="Arraycarrito.length === 0" class="list-group-item bg-transparent text-center opacity-50">
+              El carrito está vacío.
+            </li>
+          </ul>
+          <hr class="border-dark">
+          <div class="d-flex justify-content-between fw-bold px-3" style="font-size: 1.2rem;">
+            <span>TOTAL:</span>
+            <span class="text-vintage">${{ total }}</span>
+          </div>
+        </div>
+        <div class="modal-footer border-top-0 d-flex justify-content-between w-100">
+          <button (click)="limpiarCarrito()" class="btn btn-sm btn-outline-dark">Vaciar</button>
+          <button type="button" class="btn btn-sm btn-secondary me-2" data-bs-dismiss="modal">Cerrar</button>
+          <button (click)="confirmarCompra()" class="btn btn-sm btn-dark" [disabled]="Arraycarrito.length === 0" data-bs-dismiss="modal">Confirmar Compra</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+</div>
