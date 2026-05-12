@@ -1,0 +1,145 @@
+<div class="container mt-5 pb-5">
+  <div class="card shadow border-dark mx-auto" style="max-width: 650px; background-color: #fdfaf6;">
+    <div class="card-header bg-dark text-white p-3">
+      <h4 class="m-0 text-center text-uppercase" style="letter-spacing: 2px;">Inscripción a Cursos 2026</h4>
+    </div>
+    
+    <div class="card-body p-4">
+      <form #formInscripcion="ngForm">
+        
+        <div class="row mb-3">
+          <div class="col-md-6">
+            <label class="form-label fw-bold">DNI del Alumno</label>
+            <input type="text" name="dni" [(ngModel)]="inscripcion.dni" 
+                   class="form-control border-dark" placeholder="Ingrese documento">
+          </div>
+          <div class="col-md-6">
+            <label class="form-label fw-bold">Email de Contacto</label>
+            <input type="email" name="email" [(ngModel)]="inscripcion.email" 
+                   class="form-control border-dark" placeholder="ejemplo@mail.com">
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <div class="col-md-8">
+            <label class="form-label fw-bold">Curso de Idioma</label>
+            <select name="curso" [(ngModel)]="inscripcion.curso" 
+                    (change)="onCursoChange()" class="form-select border-dark">
+              <option value="" disabled selected>Seleccione un idioma...</option>
+              <option *ngFor="let c of cursosDisponibles" [value]="c.nombre">
+                {{ c.nombre }}
+              </option>
+            </select>
+          </div>
+          <div class="col-md-4">
+            <label class="form-label fw-bold">Precio Base</label>
+            <div class="input-group">
+              <span class="input-group-text border-dark bg-light">$</span>
+              <input type="text" [value]="inscripcion.precio" 
+                     class="form-control border-dark bg-light" readonly>
+            </div>
+          </div>
+        </div>
+
+        <div class="mb-4">
+          <label class="form-label fw-bold">Categoría del Postulante</label>
+          <select name="categoria" [(ngModel)]="inscripcion.categoriaAlumno" 
+                  (change)="calcularDescuento()" class="form-select border-dark">
+            <option value="0" disabled selected>Seleccione tipo de alumno...</option>
+            <option value="1">Estudiante (35% Descuento)</option>
+            <option value="2">Egresado (50% Descuento)</option>
+            <option value="3">Particular (Sin Descuento)</option>
+          </select>
+        </div>
+
+        <div *ngIf="precioFinal !== null" class="alert alert-success border-dark text-center shadow-sm py-3">
+          <label class="fw-bold fs-5 m-0 text-success">
+            TOTAL A PAGAR: {{ precioFinal | currency:'ARS':'symbol-narrow':'1.0-0' }}
+          </label>
+          <div class="small text-muted mt-1">Descuento aplicado correctamente</div>
+        </div>
+
+        <div class="d-grid gap-2">
+          <button type="button" (click)="registrar()" 
+                  class="btn btn-dark fw-bold py-2 shadow-sm"
+                  [disabled]="!inscripcion.curso || !inscripcion.categoriaAlumno">
+            REGISTRAR INSCRIPCIÓN
+          </button>
+        </div>
+
+      </form>
+    </div>
+  </div>
+  <div class="container mt-5 px-0">
+  <div class="row">
+    
+    <div class="col-lg-8 mb-4">
+      <div class="card shadow-sm border-dark">
+        <div class="card-header bg-dark text-white">
+          <h5 class="m-0">Listado de Inscripciones</h5>
+        </div>
+        <div class="table-responsive">
+          <table class="table table-hover mb-0">
+            <thead class="table-light">
+              <tr>
+                <th>DNI</th>
+                <th>Curso</th>
+                <th>Fecha</th>
+                <th>Categoría</th>
+                <th class="text-end">Total</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of listaDeInscritos">
+                <td>{{ item.dni }}</td>
+                <td>{{ item.curso }}</td>
+                <td>{{ item.fechaInscripcion | date:'dd/MM/yyyy' }}</td>
+                <td>
+                  <span class="badge border border-dark text-dark" 
+                        [ngClass]="{'bg-info-subtle': item.categoriaAlumno == 1, 
+                                   'bg-warning-subtle': item.categoriaAlumno == 2, 
+                                   'bg-secondary-subtle': item.categoriaAlumno == 3}">
+                    {{ item.categoriaAlumno == 1 ? 'Estudiante' : item.categoriaAlumno == 2 ? 'Egresado' : 'Particular' }}
+                  </span>
+                </td>
+                <td class="text-end fw-bold">{{ item.precioFinal | currency:'ARS':'symbol':'1.0-0' }}</td>
+              </tr>
+              <tr *ngIf="listaDeInscritos.length === 0">
+                <td colspan="5" class="text-center py-4 text-muted italic">No hay inscripciones registradas.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-lg-4">
+      <div class="card shadow-sm border-dark" style="background-color: #f8f9fa;">
+        <div class="card-header bg-secondary text-white">
+          <h5 class="m-0">Resumen de Caja</h5>
+        </div>
+        <div class="card-body">
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item d-flex justify-content-between bg-transparent">
+              <span>Estudiantes:</span>
+              <span class="fw-bold">{{ resumen.estudiante }}</span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between bg-transparent">
+              <span>Egresados:</span>
+              <span class="fw-bold">{{ resumen.egresado }}</span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between bg-transparent">
+              <span>Particulares:</span>
+              <span class="fw-bold">{{ resumen.particular }}</span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between bg-dark text-white mt-2">
+              <span>TOTAL GENERAL:</span>
+              <span class="fw-bold">{{ resumen.totalGeneral | currency:'ARS':'symbol':'1.0-0' }}</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>

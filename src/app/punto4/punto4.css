@@ -1,0 +1,18 @@
+.card {
+  border-radius: 0; /* Estilo minimal chic */
+}
+
+.form-control, .form-select {
+  border-radius: 0;
+  background-color: #fff;
+}
+
+.btn-dark {
+  border-radius: 0;
+  transition: all 0.3s ease;
+}
+
+.btn-dark:hover {
+  background-color: #4a3f35;
+  letter-spacing: 1px;
+}
