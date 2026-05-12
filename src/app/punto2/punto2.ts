@@ -6,4 +6,4 @@ import { Component } from '@angular/core';
   templateUrl: './punto2.html',
   styleUrl: './punto2.css',
 })
-export class Punto2 {}
+export class Punto2Component {}

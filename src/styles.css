@@ -1,1 +1,36 @@
-/* You can add global styles to this file, and also import other style files */
+/* Estilo Vintage / Analógico */
+body {
+  background-color: #f4ece1; /* Color crema/papel */
+  color: #4a3f35; /* Marrón oscuro para el texto */
+  font-family: 'Courier New', Courier, monospace; /* Tipografía de máquina de escribir */
+  margin: 0;
+  min-height: 100vh;
+}
+
+/* Navbar tipo tablero de madera o cuero */
+.navbar {
+  background-color: #4a3f35 !important;
+  border-bottom: 4px solid #d4a373; /* Tono bronce/madera */
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.nav-link {
+  color: #f4ece1 !important;
+  font-family: 'Georgia', 'Times New Roman', serif; 
+  text-transform: lowercase;
+  font-variant: small-caps;
+  letter-spacing: 2px;
+  font-size: 1.1rem;
+}
+
+.nav-link.active {
+  color: #ffb703 !important; /* Naranja vintage */
+  font-weight: bold;
+  text-decoration: underline;
+}
+
+.text-vintage {
+  color: #bc6c25; /* Ocre cálido */
+  font-family: 'Georgia', serif;
+  font-style: italic;
+}

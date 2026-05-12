@@ -1,1 +1,22 @@
-<p>punto1 works!</p>
+<div class="container d-flex justify-content-center">
+  <div class="card shadow" style="width: 26rem; background-color: #fdfaf6; border: 1px solid #d4c4b5;">
+    
+    <div class="card-header bg-transparent border-bottom text-muted">
+        <small>REGISTRO N° 00{{ indice + 1 }}</small>
+    </div>
+
+    <img [src]="cursos[indice].imagen" class="card-img-top p-3" 
+         style="height: 250px; object-fit: cover; filter: sepia(0.8) contrast(0.9);">
+    
+    <div class="card-body text-center">
+      <h2 class="text-vintage">{{ cursos[indice].titulo }}</h2>
+      <hr style="border-top: 1px dotted #4a3f35;">
+      <p class="card-text mt-3" style="line-height: 1.6;">{{ cursos[indice].detalle }}</p>
+      
+      <div class="d-flex justify-content-between mt-4">
+        <button (click)="anterior()" class="btn btn-sm" style="background-color: #bc6c25; color: white;"> [ anterior ] </button>
+        <button (click)="siguiente()" class="btn btn-sm" style="background-color: #bc6c25; color: white;"> [ siguiente ] </button>
+      </div>
+    </div>
+  </div>
+</div>
