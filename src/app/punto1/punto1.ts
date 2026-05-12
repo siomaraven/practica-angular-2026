@@ -15,23 +15,23 @@ export class Punto1Component {
   cursos = [
     { 
       titulo: 'Japanese Zen', 
-      detalle: 'Introducción a la escritura Hiragana y la estética del lenguaje visual.', 
+      detalle: 'Aprendé las bases del idioma nipón con un enfoque en la cultura corporativa de las grandes tecnológicas de Japón. Ideal para profesionales que buscan integrarse en proyectos de robótica, hardware o industrias de videojuegos, comprendiendo la etiqueta profesional del país del sol naciente.', 
       imagen: '/img/JAPANimg.png' 
     },
     { 
       titulo: 'Logic German', 
-      detalle: 'Estructuras gramaticales complejas para el pensamiento técnico.', 
+      detalle: 'Alemania es el motor tecnológico de Europa. Este curso te prepara para entender especificaciones técnicas de alta precisión y colaborar en proyectos de ingeniería de software, ciberseguridad y automatización industrial en el ecosistema alemán.', 
       imagen: '/img/GERMANYimg.png' 
     },
     { 
       titulo: 'Advanced Tech English', 
-      detalle: 'Comunicación profesional para desarrolladores y analistas de sistemas.', 
+      detalle: 'Dominá la terminología esencial para leer documentación oficial, escribir código limpio y participar en reuniones de Daily Scrum. Este curso se enfoca en el vocabulario de arquitecturas de software, metodologías ágiles y comunicación efectiva para equipos remotos globales.', 
       imagen: '/img/EEUUimg.png' 
     },
     { 
-    titulo: 'Mandarin Logic', 
-    detalle: 'Exploración de ideogramas y estructuras de pensamiento logográfico.', 
-    imagen: '/img/CHINAimg.png' 
+      titulo: 'Mandarin Logic', 
+      detalle: 'Entendé el mercado tecnológico más grande del mundo. Orientado a desarrolladores interesados en el ecosistema de hardware, eCommerce y plataformas masivas, este curso te brinda las herramientas para negociar y colaborar con proveedores y equipos de desarrollo en China.', 
+      imagen: '/img/CHINAimg.png' 
     }
   ];
 
