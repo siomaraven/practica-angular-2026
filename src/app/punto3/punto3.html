@@ -1,1 +1,26 @@
-<p>punto3 works!</p>
+<div class="container text-center pb-5">
+  <h2 class="text-vintage mb-3">Juego de Memoria</h2>
+
+  <div class="alert border-dark mb-3 p-2 shadow-sm mx-auto" style="background-color: #fdfaf6; max-width: 400px;">
+    <h6 class="m-0">{{ mensaje }}</h6>
+  </div>
+
+  <div class="mb-4">
+    <button (click)="iniciarJuego()" class="btn btn-outline-dark btn-sm me-2" [disabled]="juegoIniciado">INICIAR</button>
+    <button (click)="reiniciarJuego()" class="btn btn-outline-dark btn-sm me-2" [disabled]="!juegoIniciado">REINICIAR</button>
+    <button (click)="activarIntento()" class="btn btn-dark btn-sm" [disabled]="!juegoIniciado || habilitadoParaVoltear">INTENTAR</button>
+  </div>
+
+  <div class="mx-auto" style="max-width: 500px;">
+    <div class="row row-cols-4 g-2 justify-content-center">
+      <div class="col" *ngFor="let carta of tablero">
+        <div class="card carta-memoria border-dark shadow-sm overflow-hidden" (click)="voltear(carta)">
+          <div *ngIf="carta.tapada" class="fondo-tapado d-flex align-items-center justify-content-center h-100">
+             <span class="text-white opacity-50 fs-2">?</span>
+          </div>
+          <img *ngIf="!carta.tapada" [src]="carta.img" class="img-ajustada">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

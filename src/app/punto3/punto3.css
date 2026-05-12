@@ -1,0 +1,21 @@
+.carta-memoria {
+  aspect-ratio: 1 / 1; 
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.carta-memoria:hover {
+  transform: scale(1.03);
+}
+
+.fondo-tapado {
+  background-color: #d4c4b5;
+  height: 100%;
+}
+
+.img-ajustada {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: sepia(0.4) brightness(0.8);
+}
